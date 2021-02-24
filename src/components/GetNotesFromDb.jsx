@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-const Config = require('config');
+import Config from '../config/config';
 
 function GetNotesFromDb(props) {
   const getUserNotes = async () => {
@@ -63,13 +63,14 @@ function GetNotesFromDb(props) {
   if (query.get("code")) {
     const authCode = query.get("code");
     const params = new URLSearchParams()
+    console.log(Config.client_id)
     params.append('grant_type', 'authorization_code');
     params.append('client_id', Config.get('client_id'),);
     params.append('code', authCode);
     params.append('redirect_uri', 'https://notes.wootoodoo.com');
     const config = {
       headers: {
-        'Authorization': 'Basic ' + Config.get('Base64'),
+        'Authorization': 'Basic ' + Config.Base64,
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
