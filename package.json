@@ -9,6 +9,7 @@
     "@material-ui/icons": "4.5.1",
     "aws-amplify": "^3.3.19",
     "axios": "^0.21.1",
+    "config": "^3.3.3",
     "jsonwebtoken": "^8.5.1",
     "jwk-to-pem": "^2.0.4",
     "querystring": "^0.2.0",

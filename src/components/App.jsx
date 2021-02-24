@@ -34,18 +34,20 @@ const App = () => {
           getNotes={addNote}
           setLoggedIn={setIsLoggedIn}
         />}
-        <CreateArea onAdd={addNote} />
-        {notes.map((noteItem, index) => {
-          return (
-            <Note
-              key={noteItem.noteId}
-              id={noteItem.noteId}
-              title={noteItem.title}
-              content={noteItem.content}
-              onDelete={deleteNote}
-            />
-          );
-        })}
+        <body>
+          <CreateArea onAdd={addNote} />
+          {notes.map((noteItem, index) => {
+            return (
+              <Note
+                key={noteItem.noteId}
+                id={noteItem.noteId}
+                title={noteItem.title}
+                content={noteItem.content}
+                onDelete={deleteNote}
+              />
+            );
+          })}
+        </body>
         <Footer />
       </div>
     </Router>
