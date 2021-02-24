@@ -64,7 +64,7 @@ function GetNotesFromDb(props) {
     const authCode = query.get("code");
     const params = new URLSearchParams()
     params.append('grant_type', 'authorization_code');
-    params.append('client_id', '3lnu5men15m7vofvtj80bkrhme',);
+    params.append('client_id', Config.get('client_id'),);
     params.append('code', authCode);
     params.append('redirect_uri', 'https://notes.wootoodoo.com');
     const config = {
