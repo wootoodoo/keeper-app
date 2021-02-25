@@ -21,7 +21,6 @@ function Note(props) {
           }
         }
         let res = axios.delete(url, config);
-        console.log(res);
       } catch (err) {
         console.log(err.message)
       }
