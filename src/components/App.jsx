@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
@@ -25,17 +25,22 @@ const App = () => {
     });
   }
 
-
   return (
     <Router>  
       <div>
-        <Header />
+        <Header 
+          setLoggedIn={setIsLoggedIn}
+          isLoggedIn={isLoggedIn}
+        />
         {!isLoggedIn && <GetNotesFromDb 
           getNotes={addNote}
           setLoggedIn={setIsLoggedIn}
         />}
         <body>
-          <CreateArea onAdd={addNote} />
+          <CreateArea 
+            onAdd={addNote}
+            isLoggedIn={isLoggedIn}
+          />
           {notes.map((noteItem, index) => {
             return (
               <Note
@@ -44,6 +49,7 @@ const App = () => {
                 title={noteItem.title}
                 content={noteItem.content}
                 onDelete={deleteNote}
+                isLoggedIn={isLoggedIn}
               />
             );
           })}

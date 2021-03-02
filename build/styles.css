@@ -13,6 +13,7 @@ body {
   background: #eee;
   background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
   padding: 0 16px;
+  flex: wrap;
 }
 
 header {
@@ -26,10 +27,6 @@ header h1 {
   color: #fff;
   font-family: 'McLaren', cursive;
   font-weight: 200;
-}
-
-body {
-  flex: wrap;
 }
 
 footer {
@@ -112,4 +109,8 @@ form.create-note button {
 
 footer .btn {
   margin: 20px;
+}
+
+body .btn {
+  margin: 30px auto 20px auto;
 }

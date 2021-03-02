@@ -3,6 +3,7 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 import axios from 'axios';
+import Config from '../config/config';
 
 function CreateArea(props) {
   const [isExpanded, setExpanded] = useState(false);
@@ -81,7 +82,6 @@ function CreateArea(props) {
             placeholder="Title"
           />
         )}
-
         <textarea
           name="content"
           onClick={expand}
@@ -96,6 +96,7 @@ function CreateArea(props) {
           </Fab>
         </Zoom>
       </form>
+      
     </div>
   );
 }

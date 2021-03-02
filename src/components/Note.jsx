@@ -20,7 +20,7 @@ function Note(props) {
             'X-Amz-Security-Token': window.localStorage.id_token
           }
         }
-        let res = axios.delete(url, config);
+        axios.delete(url, config);
       } catch (err) {
         console.log(err.message)
       }
@@ -37,8 +37,9 @@ function Note(props) {
   return (
     <div className="note">
       <h1>{props.title}</h1>
-      <em>Created: {convertTime(props.id)}</em>
-      
+      <em>Created: {
+        (props.isLoggedIn && props.id !== "") ? convertTime(props.id) : convertTime(Date.now())
+        }</em>
       <p>{props.content}</p>
       <button onClick={handleClick}>
         <DeleteIcon />
