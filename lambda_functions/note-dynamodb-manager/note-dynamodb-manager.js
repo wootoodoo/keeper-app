@@ -1,15 +1,14 @@
 const AWS = require('aws-sdk');
+const AWSXRay = require('aws-xray-sdk-core')
+
+// Configure the context missing strategy to do nothing
+AWSXRay.setContextMissingStrategy(() => {});
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
+// const AWSXRayInstrument = AWSXRay.captureAWS(require('aws-sdk'))
+// const lambda = new AWSXRayInstrument.Lambda()
 
-/**
- * Provide an event that contains the following keys:
- *
- *   - operation: one of the operations in the switch statement below
- *   - tableName: required for operations that interact with DynamoDB
- *   - payload: a parameter to pass to the operation being performed
- */
 exports.handler = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
 

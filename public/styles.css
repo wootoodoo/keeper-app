@@ -106,6 +106,14 @@ form.create-note button {
   cursor: pointer;
   outline: none;
 }
+form.edit-note textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-family: inherit;
+  resize: none;
+}
 
 footer .btn {
   margin: 20px;

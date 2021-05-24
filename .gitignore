@@ -4,3 +4,5 @@ build/index.html
 build/service-worker.js
 build/styles.css
 src/config/*
+lambda_functions/note-dynamodb-manager/node_modules/*
+lambda_functions/note-dynamodb-manager/function.zip

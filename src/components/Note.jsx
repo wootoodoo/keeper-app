@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from '@material-ui/icons/Edit';
+import SaveIcon from '@material-ui/icons/Save';
 import axios from 'axios';
 
 function Note(props) {
-  async function handleClick() {
+
+  const [note, setNote] = useState({
+    title: props.title,
+    content: props.content,
+    noteId: props.id
+  })
+  const [edit, setEdit] = useState(false);
+
+  function handleEdit() {
+    setEdit(true);
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setNote(prevNote => {
+      return {
+        ...prevNote,
+        [name]: value
+      };
+    });
+  }
+
+  async function submitEdit(event) {
+    props.onEdit(note);
+    setEdit(false);
+    event.preventDefault();
+  }
+
+  async function handleDelete() {
     const noteId = props.id;
     props.onDelete(noteId);
     
@@ -27,6 +57,8 @@ function Note(props) {
     }
   }
 
+  
+
   function convertTime(timeStamp) {
     const UTCtime = new Date(timeStamp);
     const date = UTCtime.toDateString();
@@ -36,13 +68,26 @@ function Note(props) {
 
   return (
     <div className="note">
-      <h1>{props.title}</h1>
+      <h1>{note.title}</h1>
       <em>Created: {
         (props.isLoggedIn && props.id !== "") ? convertTime(props.id) : convertTime(Date.now())
         }</em>
-      <p>{props.content}</p>
-      <button onClick={handleClick}>
+      {edit && <form className="editNote"> 
+                  <textarea
+                    name="content"
+                    onChange={handleChange}
+                    value={note.content}
+                  />
+                  <button onClick={submitEdit}>
+                    <SaveIcon />
+                  </button>
+              </form>}
+      {!edit && <p>{note.content}</p>}
+      <button onClick={handleDelete}>
         <DeleteIcon />
+      </button>
+      <button onClick={handleEdit}>
+        <EditIcon />
       </button>
     </div>
   );

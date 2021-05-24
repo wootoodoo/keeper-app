@@ -17,6 +17,16 @@ const App = () => {
     });
   }
 
+  function editNote(newNote) {
+    setNotes( prevNotes => {
+      prevNotes.map(note => 
+        note.id === newNote.id 
+        ? {...note, content : newNote.content}
+        : note
+      )
+    });
+  }
+
   function deleteNote(id) {
     setNotes(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
@@ -49,6 +59,7 @@ const App = () => {
                 title={noteItem.title}
                 content={noteItem.content}
                 onDelete={deleteNote}
+                onEdit={editNote}
                 isLoggedIn={isLoggedIn}
               />
             );
